@@ -28,6 +28,15 @@
         };
     };
 
+    behaviors {
+        scroll_sensor: scroll_sensor {
+            compatible = "zmk,behavior-sensor-rotate";
+            label = "SCROLL_SENSOR";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -49,9 +58,7 @@
                       &kp GRAVE  &kp LALT  &kp LCTRL  &mo 1   &kp RET       &kp SPACE       &mo 2   &kp RCTRL  &kp RALT   &kp PRINTSCREEN
             >;
 
-            sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp K_SCROLL_DOWN K_SCROLL_UP>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>, <&scroll_sensor>;
         };
 
         lower_layer {
@@ -73,9 +80,7 @@
                        &trans     &trans    &trans    &trans     &trans    &trans  &trans     &trans    &trans     &trans
             >;
 
-            sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp LA(TAB) LA(LS(TAB))>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>, <&scroll_sensor>;
         };
 
         raise_layer {
@@ -96,7 +101,7 @@
                           &kp CAPSLOCK  &trans        &trans        &trans        &trans    &trans  &trans          &trans          &trans        &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>, <&scroll_sensor>;
         };
 
         adjust_layer {
